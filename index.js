@@ -4,30 +4,88 @@ import {
   StyleSheet,
   Text,
   View,
+  Model,
+  PointLight,
+  asset,
+  Pano
 } from 'react-360';
 
 export default class test360 extends React.Component {
   constructor() {
     super()
     this.state = {
-      textColor: 'white'
+      textColor: 'white',
+      lightColor: 'white',
+      rotation: 0
     };
+
+    this.lastUpdate = Date.now();
+    this.rotate = this.rotate.bind(this);
+  }
+
+  rotate() {
+    const now = Date.now();
+    const delta = now - this.lastUpdate;
+    this.lastUpdate = now;
+
+    this.setState({rotation: this.state.rotation + delta / 20});
+    this.frameHandle = requestAnimationFrame(this.rotate);
+  }
+
+  componentDidMount() {
+    this.rotate();
+  }
+
+  componentWillUnmount() {
+    if (this.frameHandle) {
+      cancelAnimationFrame(this.frameHandle);
+      this.frameHandle = null;
+    }
   }
 
   render() {
     return (
       <View style={styles.panel}>
         <View style={styles.greetingBox}>
+          <View style={{height: 50, flexDirection: 'row', justifyContent: 'space-between'}}>
+            <View
+              style={{backgroundColor: 'red', width: 50, height: 50}}
+              onEnter={() => this.setState({lightColor: 'red'})}
+              onExit={() => this.setState({lightColor: 'white'})}>
+            </View>
+            <Text>The table will change color when you look at one of the square.</Text>
+            <View
+              style={{backgroundColor: 'green', width: 50, height: 50}}
+              onEnter={() => this.setState({lightColor: 'green'})}
+              onExit={() => this.setState({lightColor: 'white'})}>
+            </View>
+          </View>
           <Text style={styles.greeting}>
-            Welcome to React 360
+            Just a simple text of React 360
           </Text>
           <Text
-          style={{color: this.state.textColor}}
-          onEnter={() => this.setState({textColor: 'red'})}
-          onExit={() => this.setState({textColor: 'white'})}>
-          This text will turn red when you look at it.
-        </Text>
+            style={{color: this.state.textColor}}
+            onEnter={() => this.setState({textColor: 'red'})}
+            onExit={() => this.setState({textColor: 'white'})}>
+            This text will turn red when you look at it.
+          </Text>
         </View>
+        <Model
+          style={{
+            transform: [
+              {translate: [0, -200, -100]},
+              {scale: 1},
+              {rotateY: this.state.rotation},
+              {rotateX: 45},
+            ],
+          }}
+          source={{
+            obj: asset('table.obj'),
+            mtl: asset('table.mtl'),
+          }}
+          lit={true}
+        />
+        <PointLight style={{color: this.state.lightColor, transform: [{translate: [0, 200, -100]}]}} />
       </View>
     );
   }
