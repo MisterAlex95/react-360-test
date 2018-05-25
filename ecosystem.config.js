@@ -5,7 +5,7 @@ module.exports = {
      */
     apps : [
         {
-            name      : 'react-360-tes',
+            name      : 'react-360-test',
             script    : 'npm',
             args      : 'run start:staging',
             env_production : {
