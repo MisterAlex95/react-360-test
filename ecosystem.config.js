@@ -27,7 +27,7 @@ module.exports = {
         ref  : 'origin/develop',
         repo : 'https://github.com/MisterAlex95/react-360-test.git',
         path : '/home/deploy/react-360-test',
-        'post-deploy' : '. ~/.bashrc && yarn install && pm2 reload ecosystem.config.js --env staging',
+        'post-deploy' : '. ~/.bashrc && yarn install && pm2 reload ecosystem.config.js --env staging && yarn start',
         env  : {
           NODE_ENV: 'development',
         }
