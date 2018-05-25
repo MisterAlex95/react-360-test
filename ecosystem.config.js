@@ -3,7 +3,16 @@ module.exports = {
      * Application configuration section
      * http://pm2.keymetrics.io/docs/usage/application-declaration/
      */
-    apps : [],
+    apps : [
+        {
+            name      : 'react-360-tes',
+            script    : 'npm',
+            args      : 'run start:staging',
+            env_production : {
+              NODE_ENV: 'staging'
+            }
+        }
+    ],
   
     /**
      * Deployment section
