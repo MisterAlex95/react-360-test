@@ -18,7 +18,7 @@ export default class test360 extends React.Component {
       lightColor: 'white',
       rotation: 0
     };
-    console.log(getControllers());
+    // console.log(getControllers());
     this.lastUpdate = Date.now();
     this.rotate = this.rotate.bind(this);
   }
