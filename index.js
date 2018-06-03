@@ -6,19 +6,19 @@ import {
   View,
   Model,
   PointLight,
-  asset,
-  Pano
+  asset
 } from 'react-360';
+import Menu from './src/components/Menu';
 
 export default class test360 extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       textColor: 'white',
       lightColor: 'white',
       rotation: 0
     };
-
+    console.log(getControllers());
     this.lastUpdate = Date.now();
     this.rotate = this.rotate.bind(this);
   }
@@ -112,3 +112,4 @@ const styles = StyleSheet.create({
 });
 
 AppRegistry.registerComponent('test360', () => test360);
+AppRegistry.registerComponent('Menu', () => Menu);
