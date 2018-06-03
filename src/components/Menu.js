@@ -6,6 +6,7 @@ import {
   View,
   VrButton
 } from 'react-360';
+const RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
 
 export default class Menu extends React.Component {
   constructor(props) {
@@ -16,18 +17,17 @@ export default class Menu extends React.Component {
       source: '',
       buttonClass: '',
       button: 0,
-    }
+    };
   }
 
   render() {
     return (
       <View style={styles.panel}>
-        <Text style={styles.title}>360 Games</Text>
+        <Text style={styles.title}>Controller informations</Text>
         <View style={styles.listMenu}>
           <View onInput={e => {
               const event = e.nativeEvent;
               const inputEvent = event.inputEvent;
-              console.log(inputEvent);
               this.setState({
                 action: inputEvent.action,
                 type: inputEvent.type,
@@ -49,8 +49,6 @@ export default class Menu extends React.Component {
 
 const styles = StyleSheet.create({
   panel: {
-    width: 1000,
-    height: 600,
     backgroundColor: 'rgba(255, 255, 255, 0.4)',
     justifyContent: 'center',
     alignItems: 'center',
@@ -60,18 +58,18 @@ const styles = StyleSheet.create({
     color: '#639dda'
   },
   listMenu: {
-    padding: 20,
     flex: 1,
     flexDirection: 'column',
     backgroundColor: '#000000',
     borderColor: '#639dda',
     borderWidth: 2,
-    width: 350,
+    padding: 20,
     alignItems: 'center'
   },
   menuText: {
+    textAlign: 'center',
     fontSize: 30,
-    maxWidth: 350,
-    maxHeight: 50
+    height: 50,
+    width: 250,
   },
 });
