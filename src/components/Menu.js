@@ -8,15 +8,39 @@ import {
 } from 'react-360';
 
 export default class Menu extends React.Component {
-   render() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      action: '',
+      type: '',
+      source: '',
+      buttonClass: '',
+      button: 0,
+    }
+  }
+
+  render() {
     return (
       <View style={styles.panel}>
         <Text style={styles.title}>360 Games</Text>
         <View style={styles.listMenu}>
-          <VrButton><Text style={styles.menuText}>Start</Text></VrButton>
-          <VrButton><Text style={styles.menuText}>Options</Text></VrButton>
-          <VrButton><Text style={styles.menuText}>Credits</Text></VrButton>
-          <VrButton><Text style={styles.menuText}>Quit</Text></VrButton>
+          <View onInput={e => {
+              const event = e.nativeEvent;
+              const inputEvent = event.inputEvent;
+              console.log(inputEvent);
+              this.setState({
+                action: inputEvent.action,
+                type: inputEvent.type,
+                source: inputEvent.source,
+                buttonClass: inputEvent.buttonClass,
+                button: inputEvent.button,
+              });
+            }}><Text style={styles.menuText}>Click here</Text></View>
+          <Text style={styles.menuText}>Action: {this.state.action}</Text>
+          <Text style={styles.menuText}>Type: {this.state.type}</Text>
+          <Text style={styles.menuText}>Source: {this.state.source}</Text>
+          <Text style={styles.menuText}>ButtonClass: {this.state.buttonClass}</Text>
+          <Text style={styles.menuText}>Button: {this.state.button}</Text>
         </View>
       </View>
     );
@@ -42,8 +66,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#000000',
     borderColor: '#639dda',
     borderWidth: 2,
+    width: 350,
+    alignItems: 'center'
   },
   menuText: {
     fontSize: 30,
+    maxWidth: 350,
+    maxHeight: 50
   },
 });
