@@ -49,13 +49,15 @@ export default class Scene extends React.Component {
             <View
               style={{backgroundColor: 'red', width: 50, height: 50}}
               onEnter={() => this.setState({lightColor: 'red'})}
-              onExit={() => this.setState({lightColor: 'white'})}>
+            //   onExit={() => this.setState({lightColor: 'white'})}
+            >
             </View>
             <Text>The table will change color when you look at one of the square.</Text>
             <View
               style={{backgroundColor: 'green', width: 50, height: 50}}
               onEnter={() => this.setState({lightColor: 'green'})}
-              onExit={() => this.setState({lightColor: 'white'})}>
+            //   onExit={() => this.setState({lightColor: 'white'})}
+            >
             </View>
           </View>
           <Text style={styles.greeting}>
@@ -71,10 +73,11 @@ export default class Scene extends React.Component {
         <Model
           style={{
             transform: [
-              {translate: [0, -200, -100]},
-              {scale: 1},
+              {translate: [0, 0, 0]},
+              {scale: 2},
               {rotateY: this.state.rotation},
               {rotateX: 45},
+              {rotateZ: 0},
             ],
           }}
           source={{
@@ -83,7 +86,8 @@ export default class Scene extends React.Component {
           }}
           lit={true}
         />
-        <PointLight style={{color: this.state.lightColor, transform: [{translate: [0, 200, -100]}]}} />
+        <View style={{backgroundColor: this.state.lightColor, transform: [{translate: [400, 0, 0]}], width: 50, height: 50, borderRadius: 25}} ></View>
+        <PointLight style={{color: this.state.lightColor, transform: [{translate: [400, 0, 0]}]}} />
       </View>
     );
   }
