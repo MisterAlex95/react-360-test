@@ -14,7 +14,7 @@ function init(bundle, parent, options = {}) {
   });
 
   r360.renderToSurface(r360.createRoot('Scene', { /* initial props */ }), r360.getDefaultSurface());
-  r360.renderToSurface(r360.createRoot('Scene', { /* initial props */ }), lowPanel);
+  // r360.renderToSurface(r360.createRoot('Scene', { /* initial props */ }), lowPanel);
   r360.renderToSurface(r360.createRoot('Menu', { /* initial props */ }), leftPanel);
   r360.compositor.setBackground(r360.getAssetURL('360_world.jpg'));
 }

@@ -43,7 +43,7 @@ export default class Scene extends React.Component {
 
   render() {
     return (
-      <View style={styles.panel}>
+      <View style={[styles.panel, {transform: [{rotateX: this.state.rotation}]}]}>
         <View style={styles.greetingBox}>
           <View style={{height: 50, flexDirection: 'row', justifyContent: 'space-between'}}>
             <View
