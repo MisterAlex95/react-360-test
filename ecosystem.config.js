@@ -23,7 +23,7 @@ module.exports = {
     //   },
       staging : {
         user : 'deploy',
-        host : 'dev.milky.fr',
+        host : 'test.alexdana.me',
         ref  : 'origin/develop',
         repo : 'https://github.com/MisterAlex95/react-360-test.git',
         path : '/home/deploy/react-360-test',
