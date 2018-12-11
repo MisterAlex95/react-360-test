@@ -27,7 +27,7 @@ module.exports = {
         ref  : 'origin/develop',
         repo : 'https://github.com/MisterAlex95/react-360-test.git',
         path : '/home/deploy/react-360-test',
-        'post-deploy' : '. ~/.bashrc && npm install && pm2 reload ecosystem.config.js --env staging && npm run bundle && cp -r ./static_assets ./build/',
+        'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env staging && npm run bundle && cp -r ./static_assets ./build/',
         env  : {
           NODE_ENV: 'development',
         }
