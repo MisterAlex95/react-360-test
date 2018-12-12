@@ -10,17 +10,17 @@ module.exports = {
      * http://pm2.keymetrics.io/docs/usage/deployment/
      */
     deploy : {
-    //   production : {
-    //     user : 'deploy',
-    //     host : 'lts1.milky.fr',
-    //     ref  : 'origin/master',
-    //     repo : 'git@github.com:misteralex95/react-360-test.git',
-    //     path : '/home/deploy/react-360-test',
-    //     'post-deploy' : 'source ~/.bashrc && yarn install && yarn run build',
-    //     env  : {
-    //       NODE_ENV: 'production',
-    //     }
-    //   },
+      production : {
+        user : 'deploy',
+        host : 'alexdana.me',
+        ref  : 'origin/master',
+        repo : 'git@github.com:misteralex95/react-360-test.git',
+        path : '/home/deploy/react-360-test',
+        'post-deploy' : '. ~/.bashrc && npm install && pm2 reload ecosystem.config.js --env production && npm run bundle && cp -r ./static_assets ./build/',
+        env  : {
+          NODE_ENV: 'production',
+        }
+      },
       staging : {
         user : 'deploy',
         host : 'alexdana.me',
